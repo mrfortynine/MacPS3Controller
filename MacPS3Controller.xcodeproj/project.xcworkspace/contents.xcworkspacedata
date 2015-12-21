@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:PS3Controller.xcodeproj">
+      location = "self:/Users/jia/Documents/git-workspace/MacPS3Controller/MacPS3Controller.xcodeproj">
    </FileRef>
 </Workspace>

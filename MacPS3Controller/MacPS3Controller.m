@@ -22,28 +22,28 @@
  * SOFTWARE.
  */
 
-#import "PS3Controller.h"
+#import "MacPS3Controller.h"
 
 #import <IOKit/hid/IOHIDLib.h>
 
 #import "DDHidUsage.h"
 #import "DDHidElement.h"
-#import "PS3ControllerDirectionPad.h"
-#import "PS3ControllerButton.h"
+#import "MacPS3ControllerDirectionPad.h"
+#import "MacPS3ControllerButton.h"
 
-@interface PS3Controller () {
+@interface MacPS3Controller () {
     IOHIDDeviceRef _device;
 }
 @end
 
-@implementation PS3Controller
+@implementation MacPS3Controller
 
 static NSMutableArray * _controllers = nil;
 
 
 
 +(void)initialize {
-    if (self != [PS3Controller class]) {
+    if (self != [MacPS3Controller class]) {
         return;
     }
 
@@ -62,7 +62,7 @@ static NSMutableArray * _controllers = nil;
                                @{@(kIOHIDDeviceUsagePageKey): @(kHIDPage_GenericDesktop), @(kIOHIDDeviceUsageKey): @(kHIDUsage_GD_MultiAxisController)},
                                @{@(kIOHIDDeviceUsagePageKey): @(kHIDPage_GenericDesktop), @(kIOHIDDeviceUsageKey): @(kHIDUsage_GD_Joystick)},
                             ]);
-    NSString *mode = @"PS3Controller initial discovery";
+    NSString *mode = @"MacPS3Controller initial discovery";
     IOHIDManagerScheduleWithRunLoop(hidManager, CFRunLoopGetCurrent(), (__bridge CFStringRef)mode);
     while(CFRunLoopRunInMode((CFStringRef)mode, 0, TRUE) == kCFRunLoopRunHandledSource){}
     IOHIDManagerUnscheduleFromRunLoop(hidManager, CFRunLoopGetCurrent(), (__bridge CFStringRef)mode);
@@ -82,7 +82,7 @@ static NSMutableArray * _controllers = nil;
     return self;
 }
 
-- (PS3ControllerDirectionPad*)setUpLeftDirectionPad:(IOHIDDeviceRef)device {
+- (MacPS3ControllerDirectionPad*)setUpLeftDirectionPad:(IOHIDDeviceRef)device {
     IOHIDElementRef xAxis = [self findAxisElement:kHIDUsage_GD_X onDevices:device];
     if (xAxis == nil) {
         return nil;
@@ -92,10 +92,10 @@ static NSMutableArray * _controllers = nil;
         return nil;
     }
 
-    return [[PS3ControllerDirectionPad alloc] initWithXAxisElement:xAxis YAxisElement:yAxis andName:@"Left Stick"];
+    return [[MacPS3ControllerDirectionPad alloc] initWithXAxisElement:xAxis YAxisElement:yAxis andName:@"Left Stick"];
 }
 
-- (PS3ControllerDirectionPad*)setUpRightDirectionPad:(IOHIDDeviceRef)device {
+- (MacPS3ControllerDirectionPad*)setUpRightDirectionPad:(IOHIDDeviceRef)device {
     IOHIDElementRef xAxis = [self findAxisElement:kHIDUsage_GD_Z onDevices:device];
     if (xAxis == nil) {
         return nil;
@@ -105,7 +105,7 @@ static NSMutableArray * _controllers = nil;
         return nil;
     }
 
-    return [[PS3ControllerDirectionPad alloc] initWithXAxisElement:xAxis YAxisElement:yAxis andName:@"Right Stick"];
+    return [[MacPS3ControllerDirectionPad alloc] initWithXAxisElement:xAxis YAxisElement:yAxis andName:@"Right Stick"];
 }
 
 - (IOHIDElementRef)findAxisElement: (CFIndex)axisUsage onDevices: (IOHIDDeviceRef)device {
@@ -139,7 +139,7 @@ static NSMutableArray * _controllers = nil;
     for (id object in elements) {
         IOHIDElementRef element = (__bridge IOHIDElementRef)object;
         if (IOHIDElementGetUsage(element) > 0) {
-            [buttons addObject:[[PS3ControllerButton alloc] initWithElement:element]];
+            [buttons addObject:[[MacPS3ControllerButton alloc] initWithElement:element]];
         }
     }
     return buttons;
@@ -150,7 +150,7 @@ static void ControllerConnected(void *context, IOReturn result, void *sender, IO
         NSLog(@"ControllerConnected is called with error code: %d", result);
         return;
     }
-    PS3Controller * controller = [[PS3Controller alloc] initWithDevice:device];
+    MacPS3Controller * controller = [[MacPS3Controller alloc] initWithDevice:device];
     if (controller != nil) {
         [_controllers addObject:controller];
     }
@@ -162,7 +162,7 @@ static void ControllerInput(void *context, IOReturn result, void *sender, IOHIDV
         return;
     }
 
-    PS3Controller *controller = (__bridge PS3Controller*)context;
+    MacPS3Controller *controller = (__bridge MacPS3Controller*)context;
 
     IOHIDElementRef rawElement = IOHIDValueGetElement(value);
     DDHidElement *element = [[DDHidElement alloc] initWithHIDElement:rawElement];
@@ -179,7 +179,7 @@ static void ControllerInput(void *context, IOReturn result, void *sender, IOHIDV
     }
 
     for (id obj in controller.buttons) {
-        PS3ControllerButton *button = (PS3ControllerButton*)obj;
+        MacPS3ControllerButton *button = (MacPS3ControllerButton*)obj;
         if ([button handleValue:value forHidElement:element]) {
             return;
         }

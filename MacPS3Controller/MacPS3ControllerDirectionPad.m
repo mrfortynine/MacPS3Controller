@@ -27,9 +27,9 @@
 
 #import "DDHidElement.h"
 #import "DDHidUsage.h"
-#import "PS3ControllerDirectionPad.h"
+#import "MacPS3ControllerDirectionPad.h"
 
-@interface PS3ControllerDirectionPad () {
+@interface MacPS3ControllerDirectionPad () {
     DDHidElement *_xElement;
     DDHidElement *_yElement;
 
@@ -39,13 +39,7 @@
 
 @end
 
-@implementation PS3ControllerDirectionPad
-/*
-- (instancetype)initWithHIDElement:(DDHidElement*)hidElement {
-    self = [super initWithHIDElement: hidElement];
-    return self;
-}
-*/
+@implementation MacPS3ControllerDirectionPad
 
 - (instancetype)initWithXAxisElement:(IOHIDElementRef)xAxisElement YAxisElement:(IOHIDElementRef)yAxisElement andName:(NSString*)name {
     setupAxis(xAxisElement);
@@ -72,6 +66,10 @@
         //NSLog(@"%@: x=%f, y=%f", self.name, _xValue, _yValue);
     }
     return processed;
+}
+
+- (MacPS3ControllerElementType)type {
+    return MacPS3ControllerThumbStickElement;
 }
 
 static void setupAxis(IOHIDElementRef element) {

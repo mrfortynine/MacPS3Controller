@@ -22,25 +22,14 @@
  * SOFTWARE.
  */
 
-
-#ifndef PS3Controller_h
-#define PS3Controller_h
-
 #import <Foundation/Foundation.h>
+#import <MacPS3Controller/MacPS3Controller.h>
 
-@class PS3ControllerDirectionPad;
-
-@interface PS3Controller : NSObject
-
-@property (readonly) PS3ControllerDirectionPad *leftDirectionPad;
-@property (readonly) PS3ControllerDirectionPad *rightDirectionPad;
-@property (readonly) NSArray *buttons;
-
-+ (NSArray<PS3Controller *> *)controllers;
-
-
-
-@end
-
-
-#endif /* PS3Controller_h */
+int main(int argc, const char * argv[]) {
+    @autoreleasepool {
+        NSArray *controllers = [MacPS3Controller controllers];
+        NSLog(@"Found %lu controllers", (unsigned long)controllers.count);
+    }
+    CFRunLoopRun();
+    return 0;
+}

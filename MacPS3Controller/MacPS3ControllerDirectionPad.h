@@ -22,14 +22,14 @@
  * SOFTWARE.
  */
 
-#import <Foundation/Foundation.h>
-#import "PS3Controller.h"
+#import "MacPS3ControllerElement.h"
 
-int main(int argc, const char * argv[]) {
-    @autoreleasepool {
-        NSArray *controllers = [PS3Controller controllers];
-        NSLog(@"Found %lu controllers", (unsigned long)controllers.count);
-    }
-    CFRunLoopRun();
-    return 0;
-}
+@interface MacPS3ControllerDirectionPad : NSObject<MacPS3ControllerElement>
+
+@property (readonly) NSString *name;
+@property (readonly) MacPS3ControllerElementType type;
+
+- (instancetype)initWithXAxisElement:(IOHIDElementRef)xAxisElement YAxisElement:(IOHIDElementRef)yAxisElement andName:(NSString*)name;
+
+@end
+

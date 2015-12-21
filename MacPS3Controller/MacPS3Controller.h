@@ -22,18 +22,30 @@
  * SOFTWARE.
  */
 
-#ifndef PS3ControllerElement_h
-#define PS3ControllerElement_h
-
 #import <Foundation/Foundation.h>
-#import "DDHidElement.h"
 
-@protocol PS3ControllerElement<NSObject>
+//! Project version number for MacPS3Controller.
+FOUNDATION_EXPORT double MacPS3ControllerVersionNumber;
 
-@property (readonly) NSString *name;
+//! Project version string for MacPS3Controller.
+FOUNDATION_EXPORT const unsigned char MacPS3ControllerVersionString[];
 
-- (BOOL)handleValue:(IOHIDValueRef)value forHidElement:(DDHidElement*)element;
+// In this header, you should import all the public headers of your framework using statements like #import <MacPS3Controller/PublicHeader.h>
+
+#import <MacPS3Controller/MacPS3ControllerDirectionPad.h>
+#import <MacPS3Controller/MacPS3ControllerButton.h>
+#import <MacPS3Controller/MacPS3ControllerElement.h>
+
+@interface MacPS3Controller : NSObject
+
+@property (readonly) MacPS3ControllerDirectionPad *leftDirectionPad;
+@property (readonly) MacPS3ControllerDirectionPad *rightDirectionPad;
+@property (readonly) NSArray<MacPS3ControllerButton*> *buttons;
+
++ (NSArray<MacPS3Controller *> *)controllers;
+
+
 
 @end
 
-#endif /* PS3ControllerElement_h */
+

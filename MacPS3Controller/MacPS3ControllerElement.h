@@ -22,17 +22,21 @@
  * SOFTWARE.
  */
 
-#ifndef PS3ControllerDirectionPad_h
-#define PS3ControllerDirectionPad_h
+#import <Foundation/Foundation.h>
+#import <IOKit/hid/IOHIDBase.h>
 
-#import "PS3ControllerElement.h"
+@class DDHidElement;
 
-@interface PS3ControllerDirectionPad : NSObject<PS3ControllerElement>
+typedef NS_ENUM(NSInteger, MacPS3ControllerElementType) {
+    MacPS3ControllerThumbStickElement,
+    MacPs3controllerButtonElement
+};
+
+@protocol MacPS3ControllerElement<NSObject>
 
 @property (readonly) NSString *name;
+@property (readonly) MacPS3ControllerElementType type;
 
-- (instancetype)initWithXAxisElement:(IOHIDElementRef)xAxisElement YAxisElement:(IOHIDElementRef)yAxisElement andName:(NSString*)name;
+- (BOOL)handleValue:(IOHIDValueRef)value forHidElement:(DDHidElement*)element;
 
 @end
-
-#endif
