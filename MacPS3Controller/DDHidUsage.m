@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Jia pu
+ * Copyright (c) 2015 Jia Pu
  * 
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
