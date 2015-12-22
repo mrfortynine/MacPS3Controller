@@ -31,10 +31,10 @@
 
 static NSString* nameForThumbStickId(MacPS3ControllerThumbStickID thumbStickId) {
     switch (thumbStickId) {
-        case MacPS3ControllerLeftThumbStick:
+        case MacPS3ControllerThumbStickIDLeft:
             return @"Left Thumb Stick";
             break;
-        case MacPS3controllerRightThumbStick:
+        case MacPS3controllerThumbStickIDRight:
             return @"Right Thumb Stick";
             break;
     }
@@ -84,7 +84,7 @@ static NSString* nameForThumbStickId(MacPS3ControllerThumbStickID thumbStickId) 
 }
 
 - (MacPS3ControllerElementType)type {
-    return MacPS3ControllerThumbStickElement;
+    return MacPS3ControllerElementTypeThumbStick;
 }
 
 static void setupAxis(IOHIDElementRef element) {

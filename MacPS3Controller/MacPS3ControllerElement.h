@@ -28,8 +28,8 @@
 @class DDHidElement;
 
 typedef NS_ENUM(NSInteger, MacPS3ControllerElementType) {
-    MacPS3ControllerThumbStickElement,
-    MacPS3ControllerButtonElement
+    MacPS3ControllerElementTypeThumbStick,
+    MacPS3ControllerElementTypeButton
 };
 
 @protocol MacPS3ControllerElement<NSObject>

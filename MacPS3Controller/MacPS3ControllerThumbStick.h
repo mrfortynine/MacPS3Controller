@@ -25,8 +25,8 @@
 #import "MacPS3ControllerElement.h"
 
 typedef NS_ENUM(NSInteger, MacPS3ControllerThumbStickID) {
-    MacPS3ControllerLeftThumbStick,
-    MacPS3controllerRightThumbStick
+    MacPS3ControllerThumbStickIDLeft,
+    MacPS3controllerThumbStickIDRight
 };
 
 

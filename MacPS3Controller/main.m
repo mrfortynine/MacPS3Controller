@@ -28,13 +28,13 @@
 void activateController(MacPS3Controller *controller) {
     controller.valueChangeHandler = ^(MacPS3Controller *controller, id<MacPS3ControllerElement> element) {
         switch(element.type) {
-            case MacPS3ControllerButtonElement:
+            case MacPS3ControllerElementTypeButton:
             {
                 MacPS3ControllerButton *button = (MacPS3ControllerButton*)element;
                 NSLog(@"%@, %@", button.name, (button.state ? @"Pressed" : @"Released"));
                 break;
             }
-            case MacPS3ControllerThumbStickElement:
+            case MacPS3ControllerElementTypeThumbStick:
             {
                 MacPS3ControllerThumbStick *stick = (MacPS3ControllerThumbStick*)element;
                 NSLog(@"%@, x = %f, y = %f", stick.name, stick.xValue, stick.yValue);
@@ -43,9 +43,11 @@ void activateController(MacPS3Controller *controller) {
         }
     };
 
-    __block id observer = [[NSNotificationCenter defaultCenter] addObserverForName:MacPS3ControllerDidDisconnectNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-        NSLog(@"Controller disconnected");
-        [[NSNotificationCenter defaultCenter] removeObserver:observer];
+    __block id observer = [[NSNotificationCenter defaultCenter] addObserverForName:MacPS3ControllerDidDisconnectNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull notification) {
+        if (notification.object == controller) {
+            NSLog(@"Controller disconnected");
+            [[NSNotificationCenter defaultCenter] removeObserver:observer];
+        }
     }];
 }
 

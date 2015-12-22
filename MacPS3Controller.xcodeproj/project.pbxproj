@@ -20,10 +20,19 @@
 		083E59031C27BBCF00A072A8 /* MacPS3ControllerButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 083E58EA1C24BDB600A072A8 /* MacPS3ControllerButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		083E59271C28B46D00A072A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 084F4B481C13F880008E7B7F /* main.m */; };
 		083E592A1C28B5BE00A072A8 /* MacPS3Controller.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083E58F21C27B2BB00A072A8 /* MacPS3Controller.framework */; };
+		083E59331C28DC8E00A072A8 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083E59321C28DC8E00A072A8 /* main.swift */; };
+		083E59391C28DC9B00A072A8 /* MacPS3Controller.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083E58F21C27B2BB00A072A8 /* MacPS3Controller.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		083E59281C28B5B700A072A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 084F4B3D1C13F880008E7B7F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 083E58F11C27B2BB00A072A8;
+			remoteInfo = MacPS3Controller;
+		};
+		083E59371C28DC9600A072A8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 084F4B3D1C13F880008E7B7F /* Project object */;
 			proxyType = 1;
@@ -42,6 +51,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		083E592E1C28DC8E00A072A8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +69,9 @@
 		083E58F41C27B2BB00A072A8 /* MacPS3Controller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacPS3Controller.h; sourceTree = "<group>"; };
 		083E58F61C27B2BB00A072A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		083E59201C28B3B600A072A8 /* MacPS3ControllerTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MacPS3ControllerTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		083E59301C28DC8E00A072A8 /* MacPS3ControllerSwiftTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MacPS3ControllerSwiftTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		083E59321C28DC8E00A072A8 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		083E593A1C28DFFB00A072A8 /* MacPS3Controller-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MacPS3Controller-Bridging-Header.h"; path = "MacPS3ControllerSwiftTest/MacPS3Controller-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		084F4B481C13F880008E7B7F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../MacPS3Controller/main.m; sourceTree = "<group>"; };
 		084F4B4F1C13F8BB008E7B7F /* MacPS3Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacPS3Controller.m; sourceTree = "<group>"; };
 		084F4B521C161621008E7B7F /* DDHidUsage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHidUsage.h; sourceTree = "<group>"; };
@@ -80,6 +101,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				083E592A1C28B5BE00A072A8 /* MacPS3Controller.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		083E592D1C28DC8E00A072A8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				083E59391C28DC9B00A072A8 /* MacPS3Controller.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,11 +146,21 @@
 			path = MacPS3ControllerTest;
 			sourceTree = "<group>";
 		};
+		083E59311C28DC8E00A072A8 /* MacPS3ControllerSwiftTest */ = {
+			isa = PBXGroup;
+			children = (
+				083E59321C28DC8E00A072A8 /* main.swift */,
+				083E593A1C28DFFB00A072A8 /* MacPS3Controller-Bridging-Header.h */,
+			);
+			path = MacPS3ControllerSwiftTest;
+			sourceTree = "<group>";
+		};
 		084F4B3C1C13F880008E7B7F = {
 			isa = PBXGroup;
 			children = (
 				083E58F31C27B2BB00A072A8 /* MacPS3Controller */,
 				083E59211C28B3B600A072A8 /* MacPS3ControllerTest */,
+				083E59311C28DC8E00A072A8 /* MacPS3ControllerSwiftTest */,
 				088157BD1C193D0E00345741 /* Resources */,
 				084F4B461C13F880008E7B7F /* Products */,
 			);
@@ -132,6 +171,7 @@
 			children = (
 				083E58F21C27B2BB00A072A8 /* MacPS3Controller.framework */,
 				083E59201C28B3B600A072A8 /* MacPS3ControllerTest */,
+				083E59301C28DC8E00A072A8 /* MacPS3ControllerSwiftTest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,12 +237,31 @@
 			productReference = 083E59201C28B3B600A072A8 /* MacPS3ControllerTest */;
 			productType = "com.apple.product-type.tool";
 		};
+		083E592F1C28DC8E00A072A8 /* MacPS3ControllerSwiftTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 083E59341C28DC8E00A072A8 /* Build configuration list for PBXNativeTarget "MacPS3ControllerSwiftTest" */;
+			buildPhases = (
+				083E592C1C28DC8E00A072A8 /* Sources */,
+				083E592D1C28DC8E00A072A8 /* Frameworks */,
+				083E592E1C28DC8E00A072A8 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				083E59381C28DC9600A072A8 /* PBXTargetDependency */,
+			);
+			name = MacPS3ControllerSwiftTest;
+			productName = MacPS3ControllerSwiftTest;
+			productReference = 083E59301C28DC8E00A072A8 /* MacPS3ControllerSwiftTest */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		084F4B3D1C13F880008E7B7F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = Jia;
 				TargetAttributes = {
@@ -210,6 +269,9 @@
 						CreatedOnToolsVersion = 7.2;
 					};
 					083E591F1C28B3B600A072A8 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					083E592F1C28DC8E00A072A8 = {
 						CreatedOnToolsVersion = 7.2;
 					};
 				};
@@ -228,6 +290,7 @@
 			targets = (
 				083E58F11C27B2BB00A072A8 /* MacPS3Controller */,
 				083E591F1C28B3B600A072A8 /* MacPS3ControllerTest */,
+				083E592F1C28DC8E00A072A8 /* MacPS3ControllerSwiftTest */,
 			);
 		};
 /* End PBXProject section */
@@ -265,6 +328,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		083E592C1C28DC8E00A072A8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				083E59331C28DC8E00A072A8 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -272,6 +343,11 @@
 			isa = PBXTargetDependency;
 			target = 083E58F11C27B2BB00A072A8 /* MacPS3Controller */;
 			targetProxy = 083E59281C28B5B700A072A8 /* PBXContainerItemProxy */;
+		};
+		083E59381C28DC9600A072A8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 083E58F11C27B2BB00A072A8 /* MacPS3Controller */;
+			targetProxy = 083E59371C28DC9600A072A8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -329,6 +405,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		083E59351C28DC8E00A072A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MacPS3ControllerSwiftTest/MacPS3Controller-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		083E59361C28DC8E00A072A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MacPS3ControllerSwiftTest/MacPS3Controller-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -427,6 +520,14 @@
 			buildConfigurations = (
 				083E59251C28B3B600A072A8 /* Debug */,
 				083E59261C28B3B600A072A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		083E59341C28DC8E00A072A8 /* Build configuration list for PBXNativeTarget "MacPS3ControllerSwiftTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				083E59351C28DC8E00A072A8 /* Debug */,
+				083E59361C28DC8E00A072A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

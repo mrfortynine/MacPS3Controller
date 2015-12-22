@@ -54,76 +54,76 @@
 }
 
 - (MacPS3ControllerElementType)type {
-    return MacPS3ControllerButtonElement;
+    return MacPS3ControllerElementTypeButton;
 }
 
 + (NSString*)nameForId:(MacPS3ControllerButtonID)buttonId {
     switch (buttonId) {
-        case MacPS3ControllerPSButton:
+        case MacPS3ControllerButtonIDPS:
             return @"PS Logo";
-        case MacPS3ControllerSelectButton:
+        case MacPS3ControllerButtonIDSelect:
             return @"Select";
-        case MacPS3ControllerStartButton:
+        case MacPS3ControllerButtonIDStart:
             return @"Start";
-        case MacPS3ControllerDPadLeftButton:
+        case MacPS3ControllerButtonIDDPadLeft:
             return @"DPad Left";
-        case MacPS3ControllerDPadRightButton:
+        case MacPS3ControllerButtonIDDPadRight:
             return @"DPad Right";
-        case MacPS3ControllerDPadUpButton:
+        case MacPS3ControllerButtonIDDPadUp:
             return @"DPad Up";
-        case MacPS3ControllerDPadDownButton:
+        case MacPS3ControllerButtonIDDPadDown:
             return @"DPad Down";
-        case MacPS3ControllerSquareButton:
+        case MacPS3ControllerButtonIDSquare:
             return @"Square";
-        case MacPS3ControllerTriangleButton:
+        case MacPS3ControllerButtonIDTriangle:
             return @"Triangle";
-        case MacPS3ControllerCircleButton:
+        case MacPS3ControllerButtonIDCircle:
             return @"Circle";
-        case MacPS3ControllerCrossButton:
+        case MacPS3ControllerButtonIDCross:
             return @"Cross";
-        case MacPS3ControllerLeftStickButton:
+        case MacPS3ControllerButtonIDLeftStick:
             return @"Left Stick";
-        case MacPS3ControllerRightStickButton:
+        case MacPS3ControllerButtonIDRightStick:
             return @"Right Stick";
-        case MacPS3ControllerLeftShoulderButton:
+        case MacPS3ControllerButtonIDLeftShoulder:
             return @"Left Shoulder";
-        case MacPS3ControllerRightShoulderButton:
+        case MacPS3ControllerButtonIDRightShoulder:
             return @"Right Shoulder";
-        case MacPS3ControllerLeftTriggerButton:
+        case MacPS3ControllerButtonIDLeftTrigger:
             return @"Left Trigger";
-        case MacPS3ControllerRightTriggerButton:
+        case MacPS3ControllerButtonIDRightTrigger:
             return @"Right Trigger";
     }
 }
 
 + (MacPS3ControllerGCGamepadButtonID)CGGamepadButtonIdForId:(MacPS3ControllerButtonID)buttonId {
     switch (buttonId) {
-        case MacPS3ControllerDPadLeftButton:
-            return MacPS3ControllerCGGamepadDPadLeftButton;
-        case MacPS3ControllerDPadRightButton:
-            return MacPS3ControllerCGGamepadDPadRightButton;
-        case MacPS3ControllerDPadUpButton:
-            return MacPS3ControllerCGGamepadDPadUpButton;
-        case MacPS3ControllerDPadDownButton:
-            return MacPS3ControllerCGGamepadDPadDownButton;
-        case MacPS3ControllerSquareButton:
-            return MacPS3ControllerCGGamepadXButton;
-        case MacPS3ControllerTriangleButton:
-            return MacPS3ControllerCGGamepadYButton;
-        case MacPS3ControllerCrossButton:
-            return MacPS3ControllerCGGamepadAButton;
-        case MacPS3ControllerCircleButton:
-            return MacPS3ControllerCGGamepadBButton;
-        case MacPS3ControllerLeftTriggerButton:
-            return MacPS3ControllerCGGamepadLeftTriggerButton;
-        case MacPS3ControllerLeftShoulderButton:
-            return MacPS3ControllerCGGamepadLeftShoulderButton;
-        case MacPS3ControllerRightTriggerButton:
-            return MacPS3ControllerCGGamepadRightShouldButton;
-        case MacPS3ControllerRightShoulderButton:
-            return MacPS3ControllerCGGamepadRightShouldButton;
+        case MacPS3ControllerButtonIDDPadLeft:
+            return MacPS3ControllerCGGamepadButtonIDDPadLeft;
+        case MacPS3ControllerButtonIDDPadRight:
+            return MacPS3ControllerCGGamepadButtonIDDPadRight;
+        case MacPS3ControllerButtonIDDPadUp:
+            return MacPS3ControllerCGGamepadButtonIDDPadUp;
+        case MacPS3ControllerButtonIDDPadDown:
+            return MacPS3ControllerCGGamepadButtonIDDPadDown;
+        case MacPS3ControllerButtonIDSquare:
+            return MacPS3ControllerCGGamepadButtonIDX;
+        case MacPS3ControllerButtonIDTriangle:
+            return MacPS3ControllerCGGamepadButtonIDY;
+        case MacPS3ControllerButtonIDCross:
+            return MacPS3ControllerCGGamepadButtonIDA;
+        case MacPS3ControllerButtonIDCircle:
+            return MacPS3ControllerCGGamepadButtonIDB;
+        case MacPS3ControllerButtonIDLeftTrigger:
+            return MacPS3ControllerCGGamepadButtonIDLeftTrigger;
+        case MacPS3ControllerButtonIDLeftShoulder:
+            return MacPS3ControllerCGGamepadButtonIDLeftShoulder;
+        case MacPS3ControllerButtonIDRightTrigger:
+            return MacPS3ControllerCGGamepadButtonIDRightShould;
+        case MacPS3ControllerButtonIDRightShoulder:
+            return MacPS3ControllerCGGamepadButtonIDRightShould;
         default:
-            return MacPS3ControllerCGGamepadOtherButton;
+            return MacPS3ControllerCGGamepadButtonIDOther;
     }
 }
 

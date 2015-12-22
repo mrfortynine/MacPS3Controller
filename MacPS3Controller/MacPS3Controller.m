@@ -96,7 +96,7 @@ static NSMutableArray * _controllers = nil;
         return nil;
     }
 
-    return [[MacPS3ControllerThumbStick alloc] initWithXAxisElement:xAxis YAxisElement:yAxis andId:MacPS3ControllerLeftThumbStick];
+    return [[MacPS3ControllerThumbStick alloc] initWithXAxisElement:xAxis YAxisElement:yAxis andId:MacPS3ControllerThumbStickIDLeft];
 }
 
 - (MacPS3ControllerThumbStick*)setUpRightThumbStick:(IOHIDDeviceRef)device {
@@ -109,7 +109,7 @@ static NSMutableArray * _controllers = nil;
         return nil;
     }
 
-    return [[MacPS3ControllerThumbStick alloc] initWithXAxisElement:xAxis YAxisElement:yAxis andId:MacPS3controllerRightThumbStick];
+    return [[MacPS3ControllerThumbStick alloc] initWithXAxisElement:xAxis YAxisElement:yAxis andId:MacPS3controllerThumbStickIDRight];
 }
 
 - (IOHIDElementRef)findAxisElement: (CFIndex)axisUsage onDevices: (IOHIDDeviceRef)device {

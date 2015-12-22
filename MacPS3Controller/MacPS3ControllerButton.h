@@ -25,39 +25,39 @@
 #import "MacPS3ControllerElement.h"
 
 typedef NS_ENUM(NSInteger, MacPS3ControllerButtonID) {
-    MacPS3ControllerPSButton = 17,
-    MacPS3ControllerSelectButton = 1,
-    MacPS3ControllerStartButton = 4,
-    MacPS3ControllerDPadLeftButton = 8,
-    MacPS3ControllerDPadRightButton = 6,
-    MacPS3ControllerDPadUpButton = 5,
-    MacPS3ControllerDPadDownButton = 7,
-    MacPS3ControllerSquareButton = 16,
-    MacPS3ControllerTriangleButton = 13,
-    MacPS3ControllerCircleButton = 14,
-    MacPS3ControllerCrossButton = 15,
-    MacPS3ControllerLeftStickButton = 2,
-    MacPS3ControllerRightStickButton = 3,
-    MacPS3ControllerLeftShoulderButton = 11,
-    MacPS3ControllerRightShoulderButton = 12,
-    MacPS3ControllerLeftTriggerButton = 9,
-    MacPS3ControllerRightTriggerButton = 10
+    MacPS3ControllerButtonIDPS = 17,
+    MacPS3ControllerButtonIDSelect = 1,
+    MacPS3ControllerButtonIDStart = 4,
+    MacPS3ControllerButtonIDDPadLeft = 8,
+    MacPS3ControllerButtonIDDPadRight = 6,
+    MacPS3ControllerButtonIDDPadUp = 5,
+    MacPS3ControllerButtonIDDPadDown = 7,
+    MacPS3ControllerButtonIDSquare = 16,
+    MacPS3ControllerButtonIDTriangle = 13,
+    MacPS3ControllerButtonIDCircle = 14,
+    MacPS3ControllerButtonIDCross = 15,
+    MacPS3ControllerButtonIDLeftStick = 2,
+    MacPS3ControllerButtonIDRightStick = 3,
+    MacPS3ControllerButtonIDLeftShoulder = 11,
+    MacPS3ControllerButtonIDRightShoulder = 12,
+    MacPS3ControllerButtonIDLeftTrigger = 9,
+    MacPS3ControllerButtonIDRightTrigger = 10
 };
 
 typedef NS_ENUM(NSInteger, MacPS3ControllerGCGamepadButtonID) {
-    MacPS3ControllerCGGamepadDPadLeftButton,
-    MacPS3ControllerCGGamepadDPadRightButton,
-    MacPS3ControllerCGGamepadDPadUpButton,
-    MacPS3ControllerCGGamepadDPadDownButton,
-    MacPS3ControllerCGGamepadAButton,
-    MacPS3ControllerCGGamepadBButton,
-    MacPS3ControllerCGGamepadXButton,
-    MacPS3ControllerCGGamepadYButton,
-    MacPS3ControllerCGGamepadLeftShoulderButton,
-    MacPS3ControllerCGGamepadRightShouldButton,
-    MacPS3ControllerCGGamepadLeftTriggerButton,
-    MacPS3ControllerCGGamepadRightTriggerButton,
-    MacPS3ControllerCGGamepadOtherButton
+    MacPS3ControllerCGGamepadButtonIDDPadLeft,
+    MacPS3ControllerCGGamepadButtonIDDPadRight,
+    MacPS3ControllerCGGamepadButtonIDDPadUp,
+    MacPS3ControllerCGGamepadButtonIDDPadDown,
+    MacPS3ControllerCGGamepadButtonIDA,
+    MacPS3ControllerCGGamepadButtonIDB,
+    MacPS3ControllerCGGamepadButtonIDX,
+    MacPS3ControllerCGGamepadButtonIDY,
+    MacPS3ControllerCGGamepadButtonIDLeftShoulder,
+    MacPS3ControllerCGGamepadButtonIDRightShould,
+    MacPS3ControllerCGGamepadButtonIDLeftTrigger,
+    MacPS3ControllerCGGamepadButtonIDRightTrigger,
+    MacPS3ControllerCGGamepadButtonIDOther
 };
 
 @interface MacPS3ControllerButton : NSObject<MacPS3ControllerElement>
