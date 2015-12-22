@@ -64,6 +64,7 @@ typedef NS_ENUM(NSInteger, MacPS3ControllerGCGamepadButtonID) {
 
 @property (readonly) NSString *name;
 @property (readonly) MacPS3ControllerElementType type;
+@property (readonly) CFIndex state;
 
 - (instancetype)initWithElement:(IOHIDElementRef)element;
 

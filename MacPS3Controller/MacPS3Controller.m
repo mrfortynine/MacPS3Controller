@@ -28,8 +28,11 @@
 
 #import "DDHidUsage.h"
 #import "DDHidElement.h"
-#import "MacPS3ControllerDirectionPad.h"
+#import "MacPS3ControllerThumbStick.h"
 #import "MacPS3ControllerButton.h"
+
+NSString* MacPS3ControllerDidConnectNotification = @"MacPS3ControllerDidConnectedNotification";
+NSString* MacPS3ControllerDidDisconnectNotification = @"MacPS3ControllerDidDisconnectedNotification";
 
 @interface MacPS3Controller () {
     IOHIDDeviceRef _device;
@@ -75,14 +78,15 @@ static NSMutableArray * _controllers = nil;
 }
 
 - (instancetype)initWithDevice: (IOHIDDeviceRef) device {
-    _leftDirectionPad = [self setUpLeftDirectionPad:device];
-    _rightDirectionPad = [self setUpRightDirectionPad:device];
+    _leftThumbStick = [self setUpLeftThumbStick:device];
+    _rightThumbStick = [self setUpRightThumbStick:device];
     _buttons = [self setUpButtons:device];
     IOHIDDeviceRegisterInputValueCallback(device, ControllerInput, (void *)CFBridgingRetain(self));
+    IOHIDDeviceRegisterRemovalCallback(device, ControllerDisconnected, (void*)CFBridgingRetain(self));
     return self;
 }
 
-- (MacPS3ControllerDirectionPad*)setUpLeftDirectionPad:(IOHIDDeviceRef)device {
+- (MacPS3ControllerThumbStick*)setUpLeftThumbStick:(IOHIDDeviceRef)device {
     IOHIDElementRef xAxis = [self findAxisElement:kHIDUsage_GD_X onDevices:device];
     if (xAxis == nil) {
         return nil;
@@ -92,10 +96,10 @@ static NSMutableArray * _controllers = nil;
         return nil;
     }
 
-    return [[MacPS3ControllerDirectionPad alloc] initWithXAxisElement:xAxis YAxisElement:yAxis andName:@"Left Stick"];
+    return [[MacPS3ControllerThumbStick alloc] initWithXAxisElement:xAxis YAxisElement:yAxis andId:MacPS3ControllerLeftThumbStick];
 }
 
-- (MacPS3ControllerDirectionPad*)setUpRightDirectionPad:(IOHIDDeviceRef)device {
+- (MacPS3ControllerThumbStick*)setUpRightThumbStick:(IOHIDDeviceRef)device {
     IOHIDElementRef xAxis = [self findAxisElement:kHIDUsage_GD_Z onDevices:device];
     if (xAxis == nil) {
         return nil;
@@ -105,7 +109,7 @@ static NSMutableArray * _controllers = nil;
         return nil;
     }
 
-    return [[MacPS3ControllerDirectionPad alloc] initWithXAxisElement:xAxis YAxisElement:yAxis andName:@"Right Stick"];
+    return [[MacPS3ControllerThumbStick alloc] initWithXAxisElement:xAxis YAxisElement:yAxis andId:MacPS3controllerRightThumbStick];
 }
 
 - (IOHIDElementRef)findAxisElement: (CFIndex)axisUsage onDevices: (IOHIDDeviceRef)device {
@@ -145,6 +149,34 @@ static NSMutableArray * _controllers = nil;
     return buttons;
 }
 
+- (void)handleValue:(IOHIDValueRef)value forHidElement:(DDHidElement *)element {
+    id<MacPS3ControllerElement> controllerElement = nil;
+    if ([self.leftThumbStick handleValue:value forHidElement:element]) {
+        controllerElement = self.leftThumbStick;
+    }
+
+    if (controllerElement == nil && [self.rightThumbStick handleValue:value forHidElement:element]) {
+        controllerElement = self.rightThumbStick;
+    }
+
+    if (controllerElement == nil) {
+        NSArray<MacPS3ControllerButton*> *buttons = self.buttons;
+        for (MacPS3ControllerButton* button in buttons) {
+            if ([button handleValue:value forHidElement:element]) {
+                controllerElement = button;
+                break;
+            }
+        }
+    }
+
+    if (controllerElement != nil) {
+        MacPS3ControllerValueChangedHandler handler = self.valueChangeHandler;
+        if (handler != nil) {
+            handler(self, controllerElement);
+        }
+    }
+}
+
 static void ControllerConnected(void *context, IOReturn result, void *sender, IOHIDDeviceRef device) {
     if (result != kIOReturnSuccess) {
         NSLog(@"ControllerConnected is called with error code: %d", result);
@@ -153,6 +185,7 @@ static void ControllerConnected(void *context, IOReturn result, void *sender, IO
     MacPS3Controller * controller = [[MacPS3Controller alloc] initWithDevice:device];
     if (controller != nil) {
         [_controllers addObject:controller];
+        [[NSNotificationCenter defaultCenter] postNotificationName:MacPS3ControllerDidConnectNotification object:controller];
     }
 }
 
@@ -170,20 +203,18 @@ static void ControllerInput(void *context, IOReturn result, void *sender, IOHIDV
         return;
     }
 
-    if ([controller.leftDirectionPad handleValue:value forHidElement:element]) {
+    [controller handleValue:value forHidElement:element];
+}
+
+static void ControllerDisconnected(void *context, IOReturn result, void *sender) {
+    if (result != kIOReturnSuccess) {
+        NSLog(@"ControllerDisconnected is called with error code: %d", result);
         return;
     }
 
-    if ([controller.rightDirectionPad handleValue:value forHidElement:element]) {
-        return;
-    }
-
-    for (id obj in controller.buttons) {
-        MacPS3ControllerButton *button = (MacPS3ControllerButton*)obj;
-        if ([button handleValue:value forHidElement:element]) {
-            return;
-        }
-    }
+    MacPS3Controller *controller = CFBridgingRelease((CFTypeRef)context);
+    [_controllers removeObject:controller];
+    [[NSNotificationCenter defaultCenter] postNotificationName:MacPS3ControllerDidDisconnectNotification object:controller];
 }
 
 @end

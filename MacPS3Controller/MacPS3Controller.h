@@ -32,18 +32,25 @@ FOUNDATION_EXPORT const unsigned char MacPS3ControllerVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <MacPS3Controller/PublicHeader.h>
 
-#import <MacPS3Controller/MacPS3ControllerDirectionPad.h>
+#import <MacPS3Controller/MacPS3ControllerThumbStick.h>
 #import <MacPS3Controller/MacPS3ControllerButton.h>
 #import <MacPS3Controller/MacPS3ControllerElement.h>
 
+extern  NSString* _Nonnull  MacPS3ControllerDidConnectNotification;
+extern NSString* _Nonnull MacPS3ControllerDidDisconnectNotification;
+
+@class MacPS3Controller;
+
+typedef void (^MacPS3ControllerValueChangedHandler)(MacPS3Controller * _Nonnull controller, id<MacPS3ControllerElement> _Nonnull element);
+
 @interface MacPS3Controller : NSObject
 
-@property (readonly) MacPS3ControllerDirectionPad *leftDirectionPad;
-@property (readonly) MacPS3ControllerDirectionPad *rightDirectionPad;
-@property (readonly) NSArray<MacPS3ControllerButton*> *buttons;
+@property (readonly, nonnull) MacPS3ControllerThumbStick *leftThumbStick;
+@property (readonly, nonnull) MacPS3ControllerThumbStick *rightThumbStick;
+@property (atomic, readonly, nonnull) NSArray<MacPS3ControllerButton*> *buttons;
+@property (nonatomic, copy, nullable) MacPS3ControllerValueChangedHandler valueChangeHandler;
 
-+ (NSArray<MacPS3Controller *> *)controllers;
-
++ (NSArray<MacPS3Controller *> * _Nonnull) controllers;
 
 
 @end

@@ -29,7 +29,7 @@
 
 typedef NS_ENUM(NSInteger, MacPS3ControllerElementType) {
     MacPS3ControllerThumbStickElement,
-    MacPs3controllerButtonElement
+    MacPS3ControllerButtonElement
 };
 
 @protocol MacPS3ControllerElement<NSObject>

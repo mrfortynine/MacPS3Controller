@@ -24,12 +24,21 @@
 
 #import "MacPS3ControllerElement.h"
 
-@interface MacPS3ControllerDirectionPad : NSObject<MacPS3ControllerElement>
+typedef NS_ENUM(NSInteger, MacPS3ControllerThumbStickID) {
+    MacPS3ControllerLeftThumbStick,
+    MacPS3controllerRightThumbStick
+};
+
+
+@interface MacPS3ControllerThumbStick : NSObject<MacPS3ControllerElement>
 
 @property (readonly) NSString *name;
 @property (readonly) MacPS3ControllerElementType type;
+@property (readonly) MacPS3ControllerThumbStickID thumbStickId;
+@property (readonly) float xValue;
+@property (readonly) float yValue;
 
-- (instancetype)initWithXAxisElement:(IOHIDElementRef)xAxisElement YAxisElement:(IOHIDElementRef)yAxisElement andName:(NSString*)name;
+- (instancetype)initWithXAxisElement:(IOHIDElementRef)xAxisElement YAxisElement:(IOHIDElementRef)yAxisElement andId:(MacPS3ControllerThumbStickID)thumbStickId;
 
 @end
 

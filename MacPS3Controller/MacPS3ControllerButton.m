@@ -31,7 +31,6 @@
 @interface MacPS3ControllerButton () {
     DDHidElement *_element;
     MacPS3ControllerButtonID _buttonId;
-    CFIndex _state;
 }
 
 @end
@@ -55,7 +54,7 @@
 }
 
 - (MacPS3ControllerElementType)type {
-    return MacPs3controllerButtonElement;
+    return MacPS3ControllerButtonElement;
 }
 
 + (NSString*)nameForId:(MacPS3ControllerButtonID)buttonId {

@@ -25,10 +25,43 @@
 #import <Foundation/Foundation.h>
 #import <MacPS3Controller/MacPS3Controller.h>
 
+void activateController(MacPS3Controller *controller) {
+    controller.valueChangeHandler = ^(MacPS3Controller *controller, id<MacPS3ControllerElement> element) {
+        switch(element.type) {
+            case MacPS3ControllerButtonElement:
+            {
+                MacPS3ControllerButton *button = (MacPS3ControllerButton*)element;
+                NSLog(@"%@, %@", button.name, (button.state ? @"Pressed" : @"Released"));
+                break;
+            }
+            case MacPS3ControllerThumbStickElement:
+            {
+                MacPS3ControllerThumbStick *stick = (MacPS3ControllerThumbStick*)element;
+                NSLog(@"%@, x = %f, y = %f", stick.name, stick.xValue, stick.yValue);
+                break;
+            }
+        }
+    };
+
+    __block id observer = [[NSNotificationCenter defaultCenter] addObserverForName:MacPS3ControllerDidDisconnectNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        NSLog(@"Controller disconnected");
+        [[NSNotificationCenter defaultCenter] removeObserver:observer];
+    }];
+}
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        NSArray *controllers = [MacPS3Controller controllers];
+        NSArray<MacPS3Controller*> *controllers = [MacPS3Controller controllers];
         NSLog(@"Found %lu controllers", (unsigned long)controllers.count);
+
+        for (MacPS3Controller *controller in controllers) {
+            activateController(controller);
+        }
+
+        [[NSNotificationCenter defaultCenter] addObserverForName:MacPS3ControllerDidConnectNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull notification) {
+            NSLog(@"Controller connected");
+            activateController(notification.object);
+        }];
     }
     CFRunLoopRun();
     return 0;

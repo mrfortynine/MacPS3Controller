@@ -13,9 +13,9 @@
 		083E58FC1C27B2EA00A072A8 /* MacPS3Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 084F4B4F1C13F8BB008E7B7F /* MacPS3Controller.m */; };
 		083E58FD1C27B2EA00A072A8 /* DDHidUsage.m in Sources */ = {isa = PBXBuildFile; fileRef = 084F4B531C161621008E7B7F /* DDHidUsage.m */; };
 		083E58FE1C27B2EA00A072A8 /* DDHidUsageTables.m in Sources */ = {isa = PBXBuildFile; fileRef = 084F4B561C16163D008E7B7F /* DDHidUsageTables.m */; };
-		083E58FF1C27B2EA00A072A8 /* MacPS3ControllerDirectionPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 084F4B611C1651BA008E7B7F /* MacPS3ControllerDirectionPad.m */; };
+		083E58FF1C27B2EA00A072A8 /* MacPS3ControllerThumbStick.m in Sources */ = {isa = PBXBuildFile; fileRef = 084F4B611C1651BA008E7B7F /* MacPS3ControllerThumbStick.m */; };
 		083E59001C27B2EA00A072A8 /* MacPS3ControllerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 083E58EB1C24C31F00A072A8 /* MacPS3ControllerButton.m */; };
-		083E59011C27B4E000A072A8 /* MacPS3ControllerDirectionPad.h in Headers */ = {isa = PBXBuildFile; fileRef = 084F4B631C1651D3008E7B7F /* MacPS3ControllerDirectionPad.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		083E59011C27B4E000A072A8 /* MacPS3ControllerThumbStick.h in Headers */ = {isa = PBXBuildFile; fileRef = 084F4B631C1651D3008E7B7F /* MacPS3ControllerThumbStick.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		083E59021C27BBCF00A072A8 /* MacPS3ControllerElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 084F4B5E1C16395C008E7B7F /* MacPS3ControllerElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		083E59031C27BBCF00A072A8 /* MacPS3ControllerButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 083E58EA1C24BDB600A072A8 /* MacPS3ControllerButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		083E59271C28B46D00A072A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 084F4B481C13F880008E7B7F /* main.m */; };
@@ -62,8 +62,8 @@
 		084F4B5B1C1617A3008E7B7F /* NSDictionary+DDHidExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+DDHidExtras.h"; sourceTree = "<group>"; };
 		084F4B5C1C1617A3008E7B7F /* NSDictionary+DDHidExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+DDHidExtras.m"; sourceTree = "<group>"; };
 		084F4B5E1C16395C008E7B7F /* MacPS3ControllerElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacPS3ControllerElement.h; sourceTree = "<group>"; };
-		084F4B611C1651BA008E7B7F /* MacPS3ControllerDirectionPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacPS3ControllerDirectionPad.m; sourceTree = "<group>"; };
-		084F4B631C1651D3008E7B7F /* MacPS3ControllerDirectionPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacPS3ControllerDirectionPad.h; sourceTree = "<group>"; };
+		084F4B611C1651BA008E7B7F /* MacPS3ControllerThumbStick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacPS3ControllerThumbStick.m; sourceTree = "<group>"; };
+		084F4B631C1651D3008E7B7F /* MacPS3ControllerThumbStick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacPS3ControllerThumbStick.h; sourceTree = "<group>"; };
 		088157BC1C193D0300345741 /* DDHidStandardUsages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DDHidStandardUsages.plist; path = MacPS3Controller/DDHidStandardUsages.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,8 +92,8 @@
 				084F4B4F1C13F8BB008E7B7F /* MacPS3Controller.m */,
 				083E58F41C27B2BB00A072A8 /* MacPS3Controller.h */,
 				084F4B5E1C16395C008E7B7F /* MacPS3ControllerElement.h */,
-				084F4B631C1651D3008E7B7F /* MacPS3ControllerDirectionPad.h */,
-				084F4B611C1651BA008E7B7F /* MacPS3ControllerDirectionPad.m */,
+				084F4B631C1651D3008E7B7F /* MacPS3ControllerThumbStick.h */,
+				084F4B611C1651BA008E7B7F /* MacPS3ControllerThumbStick.m */,
 				083E58EA1C24BDB600A072A8 /* MacPS3ControllerButton.h */,
 				083E58EB1C24C31F00A072A8 /* MacPS3ControllerButton.m */,
 				084F4B581C16177C008E7B7F /* DDHidElement.h */,
@@ -152,7 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				083E58F51C27B2BB00A072A8 /* MacPS3Controller.h in Headers */,
-				083E59011C27B4E000A072A8 /* MacPS3ControllerDirectionPad.h in Headers */,
+				083E59011C27B4E000A072A8 /* MacPS3ControllerThumbStick.h in Headers */,
 				083E59021C27BBCF00A072A8 /* MacPS3ControllerElement.h in Headers */,
 				083E59031C27BBCF00A072A8 /* MacPS3ControllerButton.h in Headers */,
 			);
@@ -252,7 +252,7 @@
 				083E58FC1C27B2EA00A072A8 /* MacPS3Controller.m in Sources */,
 				083E58FD1C27B2EA00A072A8 /* DDHidUsage.m in Sources */,
 				083E58FE1C27B2EA00A072A8 /* DDHidUsageTables.m in Sources */,
-				083E58FF1C27B2EA00A072A8 /* MacPS3ControllerDirectionPad.m in Sources */,
+				083E58FF1C27B2EA00A072A8 /* MacPS3ControllerThumbStick.m in Sources */,
 				083E59001C27B2EA00A072A8 /* MacPS3ControllerButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

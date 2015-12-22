@@ -27,43 +27,58 @@
 
 #import "DDHidElement.h"
 #import "DDHidUsage.h"
-#import "MacPS3ControllerDirectionPad.h"
+#import "MacPS3ControllerThumbStick.h"
 
-@interface MacPS3ControllerDirectionPad () {
+static NSString* nameForThumbStickId(MacPS3ControllerThumbStickID thumbStickId) {
+    switch (thumbStickId) {
+        case MacPS3ControllerLeftThumbStick:
+            return @"Left Thumb Stick";
+            break;
+        case MacPS3controllerRightThumbStick:
+            return @"Right Thumb Stick";
+            break;
+    }
+}
+
+@interface MacPS3ControllerThumbStick () {
     DDHidElement *_xElement;
     DDHidElement *_yElement;
-
-    float _xValue;
-    float _yValue;
+    MacPS3ControllerThumbStickID _thumbStickId;
 }
 
 @end
 
-@implementation MacPS3ControllerDirectionPad
+@implementation MacPS3ControllerThumbStick
 
-- (instancetype)initWithXAxisElement:(IOHIDElementRef)xAxisElement YAxisElement:(IOHIDElementRef)yAxisElement andName:(NSString*)name {
+- (instancetype)initWithXAxisElement:(IOHIDElementRef)xAxisElement YAxisElement:(IOHIDElementRef)yAxisElement andId:(MacPS3ControllerThumbStickID)thumbStickId {
     setupAxis(xAxisElement);
     _xElement = [[DDHidElement alloc] initWithHIDElement: xAxisElement];
     _xValue = 0;
     setupAxis(yAxisElement);
     _yElement = [[DDHidElement alloc] initWithHIDElement: yAxisElement];
     _yValue = 0;
-    _name = name;
+    _thumbStickId = thumbStickId;
+    _name = nameForThumbStickId(thumbStickId);
     return self;
 }
+
+
 
 - (BOOL)handleValue:(IOHIDValueRef)value forHidElement:(DDHidElement*)element {
     float analog = IOHIDValueGetScaledValue(value, kIOHIDValueScaleTypeCalibrated);
     BOOL processed = false;
     if ([_xElement.usage isEqual:element.usage]) {
-        _xValue = analog;
-        processed = true;
+        if (_xValue != analog) {
+            _xValue = analog;
+            processed = true;
+        }
     } else if ([_yElement.usage isEqual:element.usage]) {
-        _yValue = analog;
-        processed = true;
-    }
-    if (processed) {
-        //NSLog(@"%@: x=%f, y=%f", self.name, _xValue, _yValue);
+        // Flip y value so that up is positive which is more intuitive.
+        float flipped = -analog;
+        if (_yValue != flipped) {
+            _yValue = flipped;
+            processed = true;
+        }
     }
     return processed;
 }
@@ -74,7 +89,7 @@
 
 static void setupAxis(IOHIDElementRef element) {
     const CFIndex axisMin = 0;
-    const CFIndex axisMax = 0;
+    const CFIndex axisMax = 256;
     const float deadZonePercent = .2f;
 
     IOHIDElementSetProperty(element, CFSTR(kIOHIDElementCalibrationSaturationMinKey), (__bridge CFTypeRef)@(axisMin));
